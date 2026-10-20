@@ -103,5 +103,5 @@
 .editor-title .back-link{align-self:flex-start;margin-left:0;margin-right:auto}
 
 
-/* Center the Home button directly under the brand/header area */
-.editor-title .back-link{align-self:center;margin-left:auto;margin-right:auto}
+/* Keep Home button at the top-left below the site header */
+.editor-title .back-link{align-self:flex-start;margin:0 0 24px 0}
