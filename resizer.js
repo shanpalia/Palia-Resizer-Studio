@@ -23,11 +23,14 @@ function loadFile(file,index=-1){if(!file||!file.type.startsWith('image/')){setS
 function renderBatch(){if(!batchList)return;batchList.replaceChildren();if(!batchFiles.length){batchList.innerHTML='<p class="batch-empty">No images in the batch yet.</p>';return;}batchFiles.forEach((file,index)=>{const item=document.createElement('div');item.className='batch-item'+(index===activeBatchIndex?' active':'');const info=document.createElement('div');info.className='batch-info';const name=document.createElement('strong');name.textContent=(index+1)+'. '+file.name;const meta=document.createElement('small');meta.textContent=fmtBytes(file.size);info.append(name,meta);const choose=document.createElement('button');choose.type='button';choose.className='batch-select';choose.textContent=index===activeBatchIndex?'Editing':'Edit / select';choose.addEventListener('click',()=>loadFile(file,index));item.append(info,choose);batchList.append(item);});}
 function addFiles(fileList){const incoming=Array.from(fileList||[]).filter(file=>file&&file.type&&file.type.startsWith('image/'));if(!incoming.length){setStatus('Please drop image files only.');return;}const start=batchFiles.length;batchFiles.push(...incoming);renderBatch();loadFile(incoming[0],start);setStatus(incoming.length+' image(s) added · '+batchFiles.length+' in batch');}
 fileInput.addEventListener('change',()=>{addFiles(fileInput.files);fileInput.value='';});
-$('addMoreFiles').addEventListener('click',()=>fileInput.click());
-batchDrop.addEventListener('dragover',e=>{e.preventDefault();batchDrop.classList.add('dragover');});
-batchDrop.addEventListener('dragleave',()=>batchDrop.classList.remove('dragover'));
-batchDrop.addEventListener('drop',e=>{e.preventDefault();batchDrop.classList.remove('dragover');addFiles(e.dataTransfer.files);});
-batchDrop.addEventListener('click',()=>fileInput.click());
+const addMoreFiles=$('addMoreFiles');
+if(addMoreFiles) addMoreFiles.addEventListener('click',()=>fileInput.click());
+if(batchDrop){
+ batchDrop.addEventListener('dragover',e=>{e.preventDefault();batchDrop.classList.add('dragover');});
+ batchDrop.addEventListener('dragleave',()=>batchDrop.classList.remove('dragover'));
+ batchDrop.addEventListener('drop',e=>{e.preventDefault();batchDrop.classList.remove('dragover');addFiles(e.dataTransfer.files);});
+ batchDrop.addEventListener('click',()=>fileInput.click());
+}
 dropzone.addEventListener('dragover',e=>{e.preventDefault();dropzone.classList.add('dragover');});
 dropzone.addEventListener('dragleave',()=>dropzone.classList.remove('dragover'));
 dropzone.addEventListener('drop',e=>{e.preventDefault();dropzone.classList.remove('dragover');addFiles(e.dataTransfer.files);});
