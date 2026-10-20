@@ -150,3 +150,10 @@
     min-height:220px;
   }
 }
+
+
+/* Taller upload frame directly below trust points */
+.resizer-hero>.upload-compact .batch-upload-zone{min-height:320px}
+@media(max-width:600px){.resizer-hero>.upload-compact .batch-upload-zone{min-height:280px}}
+/* Make before/after file size comparison easy to scan in result rows */
+.batch-size-info{line-height:1.7;overflow-wrap:anywhere}
