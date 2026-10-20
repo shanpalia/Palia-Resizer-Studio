@@ -90,3 +90,10 @@
 .editor-title .back-link:hover{transform:translateY(-2px);background:linear-gradient(135deg,#fafffc,#dff8e9);box-shadow:0 9px 22px rgba(24,105,65,.14)}
 .editor-title .back-link:focus-visible{outline:3px solid #8cddb0;outline-offset:3px}
 @media(max-width:520px){.editor-title .back-link{margin-bottom:20px;padding:8px 13px}}
+
+
+/* Home navigation: prominent icon and bold label below the brand header */
+.editor-title .back-link{display:flex;align-items:center;justify-content:center;gap:11px;width:max-content;max-width:100%;padding:10px 19px;margin:12px 0 24px;text-align:center;font-size:14px;font-weight:900;letter-spacing:.15px;color:#145f40;background:linear-gradient(135deg,#fff 0%,#e5faee 100%);border:1px solid #bfe7d0;border-radius:16px;box-shadow:0 7px 20px rgba(24,105,65,.1)}
+.editor-title .back-link:before{content:"⌂";width:42px;height:42px;font-size:31px;line-height:1;display:inline-flex;align-items:center;justify-content:center;flex:none;border-radius:13px;color:#fff;background:linear-gradient(145deg,#28a86e,#14734b);box-shadow:0 4px 10px rgba(27,129,88,.24)}
+.editor-title .back-link:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(24,105,65,.16)}
+@media(max-width:520px){.editor-title .back-link{padding:8px 14px;font-size:13px}.editor-title .back-link:before{width:38px;height:38px;font-size:29px}}
