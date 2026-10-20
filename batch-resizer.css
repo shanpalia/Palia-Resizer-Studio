@@ -162,3 +162,8 @@
 /* Fix: override the more-specific legacy rule so the hero upload frame is visibly taller */
 .batch-main>.resizer-hero>.upload-compact .batch-upload-zone{min-height:360px!important;box-sizing:border-box}
 @media(max-width:600px){.batch-main>.resizer-hero>.upload-compact .batch-upload-zone{min-height:300px!important}}
+
+
+/* Explicit fixed canvas height for the upload frame in the current hero location */
+.batch-main .resizer-hero section.upload-compact #batchUploadZone.batch-upload-zone{height:360px!important;min-height:360px!important;max-height:none!important;box-sizing:border-box!important}
+@media(max-width:600px){.batch-main .resizer-hero section.upload-compact #batchUploadZone.batch-upload-zone{height:300px!important;min-height:300px!important;max-height:none!important}}
