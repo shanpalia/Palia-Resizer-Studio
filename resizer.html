@@ -24,4 +24,18 @@
 <section class="batch-results"><div class="results-heading"><div><span class="eyebrow">YOUR IMAGES</span><h2>Convert & download one by one</h2></div><span id="batchProgress" class="batch-progress">Waiting for images</span></div><div id="batchImageList" class="batch-image-list"><div class="batch-empty-state"><span>▧</span><strong>Your images will appear here</strong><small>Drag & drop images here or choose an image above.</small></div></div></section>
 <section id="batchSettings" class="batch-settings" hidden><div class="settings-title"><span class="eyebrow">OUTPUT SETTINGS</span><h2>Target file size (KB)</h2><p>Choose a target size in KB. After conversion, download the image from its row below.</p><p id="batchTargetHelp" class="kb-note">Each image will be compressed toward 100 KB. The final size depends on image detail and format.</p></div><div class="batch-setting-grid"><label>Target size<select id="batchTargetPreset"><option value="20">20 KB</option><option value="50">50 KB</option><option value="100" selected>100 KB</option><option value="200">200 KB</option><option value="500">500 KB</option><option value="custom">Custom KB</option><option value="0">Best quality</option></select></label><label>Custom size (KB)<input id="batchTargetKB" type="number" min="1" max="20000" value="100" inputmode="numeric"></label><label>Output format<select id="batchFormat"><option value="image/jpeg">JPG</option><option value="image/webp">WebP</option><option value="image/png">PNG</option></select></label><label class="batch-quality">Quality <strong id="batchQualityValue">85%</strong><input id="batchQuality" type="range" min="10" max="100" value="85"></label></div><p class="kb-note">KB size is best-effort: complex images and PNG files may not reach the exact target.</p></section>
 <section class="other-tools-link"><div><strong>Need crop, rotate, flip or detailed compression tools?</strong><p>Those editing controls are kept on a separate page so the resizer stays clean.</p></div><a class="button secondary" href="tools.html">Open other tools ↗</a></section>
-</main><footer><a class="brand footer-brand" href="./"><span class="brand-mark">P</span><span><strong>Palia Resizer Studio</strong><small>BY PALIAAPK HUB</small></span></a><p>© 2026 PaliaAPK HUB · Built for practical image editing. Developer by shanpalia.</p></footer><script src="batch-resizer.js?v=20261020-15"></script></body></html>
+</main><footer class="site-footer">
+  <div class="footer-main">
+    <a class="brand footer-brand" href="./" aria-label="Palia Resizer Studio home">
+      <span class="brand-mark" aria-hidden="true">P</span>
+      <span><strong>Palia Resizer Studio</strong><small>BY PALIAAPK HUB</small></span>
+    </a>
+    <p class="footer-about">Simple, practical tools to resize and compress images, videos, PDFs, and files — right in your browser.</p>
+    <div class="footer-brand-note"><span class="footer-spark">✦</span><span>Made for everyday creativity<br><strong>Developer by shanpalia</strong></span></div>
+  </div>
+  <div class="footer-links">
+    <div class="footer-link-group"><strong>Explore</strong><a href="./">Home</a><a href="resizer.html">Image Resizer</a><a href="tools.html#compress">Image Compressor</a></div>
+    <div class="footer-link-group"><strong>More tools</strong><a href="pdf-compressor.html">PDF Compressor</a><a href="video-compressor.html">Video Compressor</a><a href="file-compressor.html">File Compressor</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 <strong>PaliaAPK HUB</strong>. All rights reserved.</span><span class="footer-credit">Crafted with care <span>♥</span> by <strong>shanpalia</strong></span></div>
+</footer><script src="batch-resizer.js?v=20261020-15"></script></body></html>
