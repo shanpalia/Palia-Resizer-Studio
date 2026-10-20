@@ -21,3 +21,20 @@
 .batch-upload-zone>div{text-align:left}
 .batch-settings,.batch-results,.other-tools-link{max-width:1050px;margin-left:auto;margin-right:auto}
 @media(max-width:600px){.resizer-hero{padding:0}.hero-brand-line{grid-template-columns:1fr auto;gap:8px;padding:10px;margin-bottom:20px}.brand-pill{grid-column:1;grid-row:1;justify-self:start}.hero-brand-line .back-link{grid-column:1;grid-row:2;padding:3px 0}.hero-version{grid-column:2;grid-row:1}.batch-title h1{font-size:38px}.batch-title p{font-size:12px}.hero-trust{gap:8px 13px;font-size:9px}.batch-upload-zone{min-height:105px;padding:13px}.batch-upload-zone>div{min-width:0}.batch-upload-zone .button{margin-left:0}}
+
+/* Final simplified hero: home link at top, single clean upload canvas */
+.resizer-hero{margin-bottom:18px}
+.hero-brand-line{display:flex;align-items:center;justify-content:flex-start;margin:0 0 16px;padding:0;background:transparent;border:0;box-shadow:none}
+.hero-brand-line .back-link{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid #e0ebe4;border-radius:10px;padding:10px 15px;font-size:12px;font-weight:750;color:#476657;box-shadow:0 3px 12px #1d503406}
+.hero-brand-line .back-link:hover{background:#effaf4;border-color:#bce6cf}
+.hero-brand-line .brand-pill,.hero-brand-line .hero-version{display:none}
+.batch-title{margin-bottom:22px}
+.upload-compact{max-width:900px;margin:0 auto 16px;padding:15px;border-radius:18px}
+.batch-upload-zone{min-height:104px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 22px;background:#f3fcf7;border:1.5px dashed #a9d9bd;border-radius:13px}
+.batch-upload-zone .batch-upload-icon{display:none}
+.batch-upload-zone .upload-copy{flex:1;text-align:left;min-width:0}
+.batch-upload-zone .upload-copy strong{font-size:14px;font-weight:800;color:#173c2c}
+.batch-upload-zone .upload-copy small{font-size:11px;color:#7b8c82;margin-top:5px}
+.batch-upload-zone .button{flex-shrink:0;margin:0!important;padding:12px 18px;font-size:12px;border-radius:10px}
+.batch-upload-zone.dragover{background:#e2f8eb;outline:3px solid #65c89a;outline-offset:2px}
+@media(max-width:600px){.hero-brand-line{margin-bottom:14px}.hero-brand-line .back-link{padding:9px 12px}.upload-compact{padding:10px}.batch-upload-zone{min-height:110px;gap:10px;padding:13px}.batch-upload-zone .upload-copy strong{font-size:12px}.batch-upload-zone .upload-copy small{font-size:10px}.batch-upload-zone .button{padding:10px 12px}}
