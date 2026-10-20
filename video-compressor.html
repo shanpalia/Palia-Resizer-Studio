@@ -13,5 +13,19 @@ const input=document.getElementById('videoFile'),btn=document.getElementById('co
 input.addEventListener('change',()=>{selected=input.files&&input.files[0];btn.disabled=!selected;if(selected){fileName.textContent=selected.name+' · '+fmt(selected.size);status.textContent='Ready to compress '+selected.name+'.';}});
 btn.addEventListener('click',async()=>{if(!selected)return;btn.disabled=true;progress.hidden=false;progress.value=0;status.textContent='Loading video compression engine… first use may take a while.';let ffmpeg;try{const {FFmpeg}=await import('https://esm.sh/@ffmpeg/ffmpeg@0.12.10');const {toBlobURL}=await import('https://esm.sh/@ffmpeg/util@0.12.1');ffmpeg=new FFmpeg();ffmpeg.on('progress',({progress:p})=>{progress.value=Math.max(0,Math.min(100,Math.round(p*100)));status.textContent='Compressing video… '+progress.value+'%';});const base='https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd';await ffmpeg.load({coreURL:await toBlobURL(base+'/ffmpeg-core.js','text/javascript'),wasmURL:await toBlobURL(base+'/ffmpeg-core.wasm','application/wasm')});const ext=(selected.name.split('.').pop()||'mp4').toLowerCase().replace(/[^a-z0-9]/g,'')||'mp4';const inName='input.'+ext;const outName='compressed.mp4';await ffmpeg.writeFile(inName,new Uint8Array(await selected.arrayBuffer()));const crf=document.getElementById('quality').value;const scale=document.getElementById('scale').value;const args=['-i',inName,'-c:v','libx264','-preset','fast','-crf',crf,'-c:a','aac','-b:a','128k'];if(scale!=='original')args.push('-vf','scale=-2:min('+scale+'\,ih)');args.push('-movflags','+faststart',outName);status.textContent='Compressing video…';await ffmpeg.exec(args);const data=await ffmpeg.readFile(outName);const blob=new Blob([data],{type:'video/mp4'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=selected.name.replace(/\.[^.]+$/,'')+'-compressed.mp4';a.click();setTimeout(()=>URL.revokeObjectURL(url),2000);status.textContent='Done · '+fmt(selected.size)+' → '+fmt(blob.size)+' · '+(blob.size<selected.size?'saved '+fmt(selected.size-blob.size):'output is larger; try a smaller-file setting')+'.';await ffmpeg.deleteFile(inName);await ffmpeg.deleteFile(outName);ffmpeg.terminate();}catch(e){status.textContent='Could not compress this video: '+(e&&e.message?e.message:String(e));if(ffmpeg)ffmpeg.terminate();}finally{btn.disabled=false;}});
 function fmt(n){if(n<1024)return n+' B';if(n<1048576)return (n/1024).toFixed(1)+' KB';return (n/1048576).toFixed(2)+' MB';}
-</script><footer><a class="brand footer-brand" href="./"><span class="brand-mark">P</span><span><strong>Palia Resizer Studio</strong><small>BY PALIAAPK HUB</small></span></a><p>© 2026 PaliaAPK HUB · Built for practical image editing. Developer by shanpalia.</p></footer>
+</script><footer class="site-footer">
+  <div class="footer-main">
+    <a class="brand footer-brand" href="./" aria-label="Palia Resizer Studio home">
+      <span class="brand-mark" aria-hidden="true">P</span>
+      <span><strong>Palia Resizer Studio</strong><small>BY PALIAAPK HUB</small></span>
+    </a>
+    <p class="footer-about">Simple, practical tools to resize and compress images, videos, PDFs, and files — right in your browser.</p>
+    <div class="footer-brand-note"><span class="footer-spark">✦</span><span>Made for everyday creativity<br><strong>Developer by shanpalia</strong></span></div>
+  </div>
+  <div class="footer-links">
+    <div class="footer-link-group"><strong>Explore</strong><a href="./">Home</a><a href="resizer.html">Image Resizer</a><a href="tools.html#compress">Image Compressor</a></div>
+    <div class="footer-link-group"><strong>More tools</strong><a href="pdf-compressor.html">PDF Compressor</a><a href="video-compressor.html">Video Compressor</a><a href="file-compressor.html">File Compressor</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 <strong>PaliaAPK HUB</strong>. All rights reserved.</span><span class="footer-credit">Crafted with care <span>♥</span> by <strong>shanpalia</strong></span></div>
+</footer>
 </body></html>
