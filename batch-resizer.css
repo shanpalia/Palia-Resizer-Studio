@@ -49,3 +49,13 @@
 .resizer-hero .batch-upload-zone .button{flex-shrink:0;margin:0!important;padding:12px 18px;font-size:12px;border-radius:10px}
 .resizer-hero .upload-meta{display:flex;justify-content:space-between;align-items:center;padding:10px 2px 0;font-size:11px;color:#708177}
 @media(max-width:600px){.resizer-hero .upload-compact{padding:10px;margin-top:17px}.resizer-hero .batch-upload-zone{min-height:105px;gap:10px;padding:13px}.resizer-hero .batch-upload-zone .upload-copy strong{font-size:12px}.resizer-hero .batch-upload-zone .upload-copy small{font-size:10px}.resizer-hero .batch-upload-zone .button{padding:10px 12px}}
+
+/* Put the drag-and-drop canvas at the very top of the page content */
+.batch-main>.upload-compact{order:-1;max-width:900px;margin:0 auto 24px;padding:15px;background:#fff;border:1px solid #e2ede7;border-radius:18px;box-shadow:0 10px 32px #1d503408}
+.batch-main>.upload-compact .batch-upload-zone{min-height:112px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 22px;background:#f3fcf7;border:1.5px dashed #a9d9bd;border-radius:13px;cursor:pointer}
+.batch-main>.upload-compact .batch-upload-icon{display:none}
+.batch-main>.upload-compact .upload-copy{flex:1;text-align:left;min-width:0}
+.batch-main>.upload-compact .upload-copy strong{font-size:14px;font-weight:800;color:#173c2c}
+.batch-main>.upload-compact .upload-copy small{font-size:11px;color:#7b8c82;margin-top:5px}
+.batch-main>.upload-compact .button{flex-shrink:0;margin:0!important;padding:12px 18px;font-size:12px;border-radius:10px}
+@media(max-width:600px){.batch-main>.upload-compact{padding:10px;margin-bottom:18px}.batch-main>.upload-compact .batch-upload-zone{min-height:105px;gap:10px;padding:13px}.batch-main>.upload-compact .upload-copy strong{font-size:12px}.batch-main>.upload-compact .upload-copy small{font-size:10px}.batch-main>.upload-compact .button{padding:10px 12px}}
