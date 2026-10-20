@@ -14,3 +14,6 @@
 @media(max-width:950px){.tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:800px){.topbar{align-items:center;flex-direction:column;gap:13px}.tool-nav{justify-content:center;max-width:none}.tool-nav a{font-size:10px}.tool-grid{grid-template-columns:1fr}}
 @media(max-width:420px){.tool-nav{gap:6px}.tool-nav a{font-size:9px;padding:7px 8px}}
+
+/* Use the same Palia Resizer Studio icon wherever the old P mark appears. */
+.brand-mark{background:#087b40 url('favicon.svg?v=20261020') center/cover no-repeat!important;color:transparent!important;font-size:0!important;box-shadow:none!important;border:0!important;overflow:hidden}
