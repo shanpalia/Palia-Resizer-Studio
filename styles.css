@@ -6,10 +6,11 @@
 .tool-nav a{display:inline-flex;align-items:center;padding:9px 12px;border:1px solid #e1eee7;border-radius:10px;background:#fff;color:#315b49;font-size:11px;font-weight:800;white-space:nowrap;transition:.18s}
 .tool-nav a:hover{background:#e8fbf1;border-color:#b8e7cf;color:#147b5c;transform:translateY(-1px)}
 .tool-nav a:last-child{background:#163d2d;color:#fff;border-color:#163d2d}
-.tool-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.tool-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
 .tool-card{min-width:0;padding:22px 19px}
 .tool-card h3{font-size:17px}
 .tool-icon.violet{background:#eee5ff;color:#7252a5}
-@media(max-width:1100px){.topbar{height:auto;min-height:82px;padding-block:15px;align-items:flex-start}.tool-nav{max-width:620px}.tool-nav a{padding:8px 9px;font-size:10px}.tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:1200px){.topbar{height:auto;min-height:82px;padding-block:15px;align-items:flex-start}.tool-nav{max-width:620px}.tool-nav a{padding:8px 9px;font-size:10px}.tool-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:950px){.tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:800px){.topbar{align-items:center;flex-direction:column;gap:13px}.tool-nav{justify-content:center;max-width:none}.tool-nav a{font-size:10px}.tool-grid{grid-template-columns:1fr}}
 @media(max-width:420px){.tool-nav{gap:6px}.tool-nav a{font-size:9px;padding:7px 8px}}
