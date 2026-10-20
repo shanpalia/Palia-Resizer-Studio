@@ -167,3 +167,22 @@
 /* Explicit fixed canvas height for the upload frame in the current hero location */
 .batch-main .resizer-hero section.upload-compact #batchUploadZone.batch-upload-zone{height:360px!important;min-height:360px!important;max-height:none!important;box-sizing:border-box!important}
 @media(max-width:600px){.batch-main .resizer-hero section.upload-compact #batchUploadZone.batch-upload-zone{height:300px!important;min-height:300px!important;max-height:none!important}}
+
+
+/* Pointer cursor across the tool; drag-and-drop frame keeps its visual cue */
+.batch-page .batch-main,
+.batch-page .batch-main *{cursor:pointer}
+.batch-page .batch-main input,
+.batch-page .batch-main select,
+.batch-page .batch-main textarea{cursor:text}
+.batch-page .batch-main input[type=range],
+.batch-page .batch-main input[type=checkbox]{cursor:pointer}
+/* Center the drop instruction inside the upload frame */
+.batch-main .resizer-hero section.upload-compact #batchUploadZone.batch-upload-zone{flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px}
+.batch-main .resizer-hero section.upload-compact #batchUploadZone .upload-copy{text-align:center;flex:0 1 auto}
+.batch-main .resizer-hero section.upload-compact #batchUploadZone .upload-copy strong{font-size:18px;letter-spacing:.2px}
+.batch-main .resizer-hero section.upload-compact #batchUploadZone .upload-copy small{font-size:12px}
+.batch-main .resizer-hero section.upload-compact #batchUploadZone:before{content:'↥';display:grid;place-items:center;width:58px;height:58px;border-radius:18px;background:#ddf7e9;color:#1b8058;font-size:32px;font-weight:800;box-shadow:inset 0 0 0 1px #c7ecd8}
+.batch-main .resizer-hero section.upload-compact #batchUploadZone.dragover{border-color:#288d68;background:#e5f9ed;transform:scale(1.005)}
+.batch-main .batch-results{scroll-margin-top:18px}
+@media(max-width:600px){.batch-main .resizer-hero section.upload-compact #batchUploadZone .upload-copy strong{font-size:16px}}
