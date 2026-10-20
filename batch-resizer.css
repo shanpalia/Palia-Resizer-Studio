@@ -83,3 +83,15 @@
 .batch-main .batch-title>.upload-compact .button{flex-shrink:0;margin:0!important;padding:12px 18px;font-size:12px;border-radius:10px}
 .batch-main .batch-title>.upload-compact .upload-meta{display:flex;justify-content:space-between;align-items:center;padding:10px 2px 0;font-size:11px;color:#708177}
 @media(max-width:600px){.batch-main .batch-title>.upload-compact{padding:10px;margin-top:17px}.batch-main .batch-title>.upload-compact .batch-upload-zone{min-height:105px;gap:10px;padding:13px}.batch-main .batch-title>.upload-compact .upload-copy strong{font-size:12px}.batch-main .batch-title>.upload-compact .upload-copy small{font-size:10px}.batch-main .batch-title>.upload-compact .button{padding:10px 12px}}
+
+/* Place drop zone inside the YOUR IMAGES panel as its empty-state canvas */
+.batch-results>.upload-compact{display:block;max-width:none;margin:16px 0;padding:0;background:transparent;border:0;border-radius:0;box-shadow:none}
+.batch-results>.upload-compact .batch-upload-zone{min-height:145px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:24px 26px;background:#f3fcf7;border:1.5px dashed #a9d9bd;border-radius:14px;cursor:pointer}
+.batch-results>.upload-compact .batch-upload-icon{display:none}
+.batch-results>.upload-compact .upload-copy{flex:1;text-align:left;min-width:0}
+.batch-results>.upload-compact .upload-copy strong{display:block;font-size:15px;font-weight:800;color:#173c2c}
+.batch-results>.upload-compact .upload-copy small{display:block;font-size:12px;color:#7b8c82;margin-top:7px}
+.batch-results>.upload-compact #browseImages{flex:0 0 auto;margin:0;padding:12px 20px;border-radius:10px}
+.batch-results>.upload-compact .upload-meta{display:flex;justify-content:space-between;align-items:center;padding:10px 2px 0;font-size:11px;color:#708177}
+.batch-results .batch-empty-state{display:none}
+@media(max-width:600px){.batch-results>.upload-compact .batch-upload-zone{min-height:120px;padding:15px;gap:10px}.batch-results>.upload-compact .upload-copy strong{font-size:13px}.batch-results>.upload-compact .upload-copy small{font-size:10px}.batch-results>.upload-compact #browseImages{padding:10px 12px}}
