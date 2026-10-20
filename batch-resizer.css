@@ -157,3 +157,8 @@
 @media(max-width:600px){.resizer-hero>.upload-compact .batch-upload-zone{min-height:280px}}
 /* Make before/after file size comparison easy to scan in result rows */
 .batch-size-info{line-height:1.7;overflow-wrap:anywhere}
+
+
+/* Fix: override the more-specific legacy rule so the hero upload frame is visibly taller */
+.batch-main>.resizer-hero>.upload-compact .batch-upload-zone{min-height:360px!important;box-sizing:border-box}
+@media(max-width:600px){.batch-main>.resizer-hero>.upload-compact .batch-upload-zone{min-height:300px!important}}
