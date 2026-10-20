@@ -95,3 +95,38 @@
 .batch-results>.upload-compact .upload-meta{display:flex;justify-content:space-between;align-items:center;padding:10px 2px 0;font-size:11px;color:#708177}
 .batch-results .batch-empty-state{display:none}
 @media(max-width:600px){.batch-results>.upload-compact .batch-upload-zone{min-height:120px;padding:15px;gap:10px}.batch-results>.upload-compact .upload-copy strong{font-size:13px}.batch-results>.upload-compact .upload-copy small{font-size:10px}.batch-results>.upload-compact #browseImages{padding:10px 12px}}
+
+
+/* Focused upload layout fix: enlarge the drop frame and keep Choose image outside it on the right */
+.batch-results>.upload-compact{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:stretch;
+  column-gap:16px;
+  row-gap:0;
+}
+.batch-results>.upload-compact .batch-upload-zone{
+  grid-column:1;
+  grid-row:1;
+  min-height:190px;
+  width:100%;
+  box-sizing:border-box;
+  justify-content:center;
+}
+.batch-results>.upload-compact #browseImages{
+  grid-column:2;
+  grid-row:1;
+  align-self:center;
+  justify-self:end;
+  white-space:nowrap;
+  margin:0;
+}
+.batch-results>.upload-compact .upload-meta{
+  grid-column:1 / -1;
+  grid-row:2;
+}
+@media(max-width:600px){
+  .batch-results>.upload-compact{column-gap:10px}
+  .batch-results>.upload-compact .batch-upload-zone{min-height:165px;padding:12px}
+  .batch-results>.upload-compact #browseImages{padding:10px 11px;font-size:11px}
+}
