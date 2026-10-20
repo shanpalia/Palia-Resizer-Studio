@@ -48,3 +48,20 @@
 .privacy-note{border:1px solid #dcefe3;background:#f3fbf6;padding:13px;border-radius:11px}
 @media(max-width:900px){.settings-panel{position:static}.workspace{gap:16px}.dropzone{min-height:360px}}
 @media(max-width:520px){.editor-main{padding:22px 12px 38px}.editor-title h1{letter-spacing:-1.4px}.editor-title p{font-size:13px}.panel-head{padding:13px;align-items:flex-start}.dropzone{min-height:280px}.empty-state{padding:28px 17px}.settings-panel{padding:17px}.setting-group{padding:14px 0}}
+
+
+/* Full-frame upload artwork and centered drop prompt */
+.dropzone{position:relative;isolation:isolate;overflow:hidden;min-height:490px;display:flex;align-items:center;justify-content:center;background-color:#f3fcf7;background-image:radial-gradient(#cde8d8 1px,transparent 1px),linear-gradient(140deg,#fbfffd,#e5f8ed);background-size:18px 18px,cover;cursor:pointer}
+.dropzone:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 12% 25%,rgba(148,231,184,.48),transparent 27%),radial-gradient(ellipse at 90% 20%,rgba(119,218,163,.38),transparent 25%),linear-gradient(160deg,transparent 45%,rgba(73,202,133,.22) 45%,rgba(20,153,91,.15) 100%);clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+.dropzone:after{content:"";position:absolute;inset:10% 12%;z-index:-1;pointer-events:none;border:1px dashed rgba(39,153,94,.28);border-radius:24px}
+.empty-state{position:relative;z-index:1;width:min(100%,500px);max-width:500px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px 24px;border:1px solid rgba(195,232,210,.9);border-radius:22px;background:rgba(255,255,255,.86);box-shadow:0 18px 55px rgba(24,104,65,.12);backdrop-filter:blur(7px);cursor:pointer}
+.upload-art{display:grid;place-items:center;width:112px;height:96px;margin:0 auto 18px;background:transparent;border:0;border-radius:0;box-shadow:none;color:transparent;font-size:0}
+.upload-art:before,.upload-art:after{content:none!important;display:none!important}
+.upload-art svg{display:block;width:100%;height:100%;overflow:visible}
+.empty-state h2{margin:0 0 9px;font-size:clamp(22px,3vw,30px);font-weight:850;letter-spacing:-.8px;color:#174b34}
+.empty-state p{margin:0 0 11px;font-size:13px;line-height:1.7;color:#4e7560}
+.empty-state small{font-size:11px;color:#7a9686;line-height:1.6}
+.dropzone.dragover{background-color:#e8fff0;outline:3px dashed #35aa70;outline-offset:-8px}
+.dropzone.dragover .empty-state{border-color:#66c995;background:rgba(255,255,255,.94);transform:scale(1.01)}
+@media(max-width:900px){.dropzone{min-height:360px}}
+@media(max-width:520px){.dropzone{min-height:280px;padding:14px}.empty-state{padding:25px 14px}.upload-art{width:90px;height:78px;margin-bottom:14px}.empty-state h2{font-size:22px}}
