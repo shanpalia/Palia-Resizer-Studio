@@ -1,0 +1,43 @@
+(() => {
+'use strict';
+const $ = (id) => document.getElementById(id);
+const fileInput=$('fileInput'), dropzone=$('dropzone'), emptyState=$('emptyState'), previewWrap=$('previewWrap'), canvas=$('previewCanvas');
+const ctx=canvas.getContext('2d',{alpha:true});
+const widthInput=$('widthInput'),heightInput=$('heightInput'),lockRatio=$('lockRatio');
+const cropX=$('cropX'),cropY=$('cropY'),cropW=$('cropW'),cropH=$('cropH');
+const format=$('format'),quality=$('quality'),qualityValue=$('qualityValue'),targetKB=$('targetKB'),targetUnit=$('targetUnit');
+const processButton=$('processButton'),downloadButton=$('downloadButton');
+let source=null,filename='image',ratio=1,ratioLocked=true,rotation=0,flipH=false,flipV=false,lastBlob=null,lastURL=null,sourceWidth=0,sourceHeight=0,processing=false;
+const setStatus=(s)=>$('statusText').textContent=s;
+const fmtBytes=(n)=>n<1024? n+' B':n<1024*1024?(n/1024).toFixed(1)+' KB':(n/1024/1024).toFixed(2)+' MB';
+const intVal=(el,min,max)=>{const n=Math.round(Number(el.value));return Number.isFinite(n)?Math.min(max,Math.max(min,n)):min;};
+const currentDims=()=>({w:Math.max(1,Math.min(12000,intVal(widthInput,1,12000))),h:Math.max(1,Math.min(12000,intVal(heightInput,1,12000)))});
+const currentCrop=()=>{let x=intVal(cropX,0,sourceWidth-1),y=intVal(cropY,0,sourceHeight-1),w=intVal(cropW,1,sourceWidth),h=intVal(cropH,1,sourceHeight);x=Math.min(x,sourceWidth-1);y=Math.min(y,sourceHeight-1);w=Math.max(1,Math.min(w,sourceWidth-x));h=Math.max(1,Math.min(h,sourceHeight-y));return{x,y,w,h};};
+function clearOutput(){lastBlob=null;downloadButton.disabled=true;$('resultSummary').textContent='';if(lastURL){URL.revokeObjectURL(lastURL);lastURL=null;}}
+function drawPreview(){if(!source)return;const crop=currentCrop();const out=currentDims();const pw=Math.max(1,Math.min(1800,out.w)),ph=Math.max(1,Math.min(1800,out.h));canvas.width=pw;canvas.height=ph;ctx.clearRect(0,0,pw,ph);ctx.save();ctx.translate(pw/2,ph/2);ctx.rotate(rotation*Math.PI/180);ctx.scale(flipH?-1:1,flipV?-1:1);const rw=(rotation%180===0)?pw:ph,rh=(rotation%180===0)?ph:pw;ctx.drawImage(source,crop.x,crop.y,crop.w,crop.h,-rw/2,-rh/2,rw,rh);ctx.restore();$('previewDimensions').textContent=out.w+' × '+out.h+' px output';}
+function resetCrop(){cropX.value=0;cropY.value=0;cropW.value=sourceWidth;cropH.value=sourceHeight;}
+function invalidate(){clearOutput();drawPreview();}
+function loadFile(file){if(!file||!file.type.startsWith('image/')){setStatus('Please select a valid image file.');return;}const url=URL.createObjectURL(file);const img=new Image();img.onload=()=>{if(source&&source.close)source.close();source=img;sourceWidth=img.naturalWidth;sourceHeight=img.naturalHeight;filename=(file.name||'image').replace(/\.[^.]+$/,'')||'image';ratio=sourceWidth/sourceHeight;rotation=0;flipH=false;flipV=false;resetCrop();widthInput.value=sourceWidth;heightInput.value=sourceHeight;$('preset').value='original';emptyState.hidden=true;previewWrap.hidden=false;processButton.disabled=false;downloadButton.disabled=true;$('fileSummary').textContent=file.name+' · '+fmtBytes(file.size);setStatus('Image ready');$('previewDimensions').textContent=sourceWidth+' × '+sourceHeight+' px source';clearOutput();drawPreview();URL.revokeObjectURL(url);};img.onerror=()=>{URL.revokeObjectURL(url);setStatus('Could not open this image. Try another file.');};img.src=url;}
+fileInput.addEventListener('change',()=>loadFile(fileInput.files&&fileInput.files[0]));
+dropzone.addEventListener('dragover',e=>{e.preventDefault();dropzone.classList.add('dragover');});
+dropzone.addEventListener('dragleave',()=>dropzone.classList.remove('dragover'));
+dropzone.addEventListener('drop',e=>{e.preventDefault();dropzone.classList.remove('dragover');loadFile(e.dataTransfer.files&&e.dataTransfer.files[0]);});
+dropzone.addEventListener('click',()=>{if(!source)fileInput.click();});
+lockRatio.addEventListener('click',()=>{ratioLocked=!ratioLocked;lockRatio.classList.toggle('active',ratioLocked);lockRatio.setAttribute('aria-pressed',String(ratioLocked));lockRatio.textContent=ratioLocked?'🔒':'🔓';if(source&&ratioLocked){ratio=currentDims().w/currentDims().h;}});
+widthInput.addEventListener('input',()=>{if(ratioLocked&&source){const w=intVal(widthInput,1,12000);heightInput.value=Math.max(1,Math.min(12000,Math.round(w/ratio)));}if(source)invalidate();});
+heightInput.addEventListener('input',()=>{if(ratioLocked&&source){const h=intVal(heightInput,1,12000);widthInput.value=Math.max(1,Math.min(12000,Math.round(h*ratio)));}if(source)invalidate();});
+[cropX,cropY,cropW,cropH].forEach(el=>el.addEventListener('input',()=>{if(source){invalidate();}}));
+$('preset').addEventListener('change',()=>{if(!source)return;const p=$('preset').value;let w=sourceWidth,h=sourceHeight;if(p==='square'){w=h=1080;}else if(p==='social'){w=1080;h=1350;}else if(p==='story'){w=1080;h=1920;}else if(p==='hd'){w=1280;h=720;}else if(p==='fullhd'){w=1920;h=1080;}widthInput.value=w;heightInput.value=h;ratio=w/h;ratioLocked=false;lockRatio.classList.remove('active');lockRatio.textContent='🔓';lockRatio.setAttribute('aria-pressed','false');invalidate();});
+$('resetCrop').addEventListener('click',()=>{if(source){resetCrop();invalidate();}});
+$('rotateLeft').addEventListener('click',()=>{rotation=(rotation+270)%360;invalidate();});
+$('rotateRight').addEventListener('click',()=>{rotation=(rotation+90)%360;invalidate();});
+$('flipH').addEventListener('click',()=>{flipH=!flipH;invalidate();});
+$('flipV').addEventListener('click',()=>{flipV=!flipV;invalidate();});
+quality.addEventListener('input',()=>{qualityValue.textContent=quality.value+'%';clearOutput();});
+format.addEventListener('change',()=>clearOutput());targetKB.addEventListener('input',()=>clearOutput());targetUnit.addEventListener('change',()=>clearOutput());
+['rotateLeft','rotateRight','flipH','flipV'].forEach(id=>$(id).disabled=false);
+function drawToCanvas(w,h,crop){const out=document.createElement('canvas');const swapped=rotation%180!==0;out.width=swapped?h:w;out.height=swapped?w:h;const c=out.getContext('2d');c.save();c.translate(out.width/2,out.height/2);c.rotate(rotation*Math.PI/180);c.scale(flipH?-1:1,flipV?-1:1);c.drawImage(source,crop.x,crop.y,crop.w,crop.h,-w/2,-h/2,w,h);c.restore();if(swapped){const fixed=document.createElement('canvas');fixed.width=w;fixed.height=h;fixed.getContext('2d').drawImage(out,0,0,h,w);return out;}return out;}
+function encode(can,type,q){return new Promise(resolve=>can.toBlob(blob=>resolve(blob),type,q));}
+processButton.addEventListener('click',async()=>{if(!source||processing)return;processing=true;processButton.disabled=true;downloadButton.disabled=true;clearOutput();setStatus('Processing…');$('resultSummary').textContent='Preparing output locally…';try{const dims=currentDims(),crop=currentCrop();let w=dims.w,h=dims.h;const out=document.createElement('canvas');out.width=w;out.height=h;const c=out.getContext('2d');c.save();c.translate(w/2,h/2);c.rotate(rotation*Math.PI/180);c.scale(flipH?-1:1,flipV?-1:1);if(rotation%180!==0){const dw=h,dh=w;c.drawImage(source,crop.x,crop.y,crop.w,crop.h,-dw/2,-dh/2,dw,dh);}else{c.drawImage(source,crop.x,crop.y,crop.w,crop.h,-w/2,-h/2,w,h);}c.restore();const type=format.value;let q=Number(quality.value)/100;const target=Number(targetKB.value)*(targetUnit.value==='MB'?1024:1)*1024;let blob=await encode(out,type,q);if(targetKB.value&&Number.isFinite(target)&&target>0&&(type==='image/jpeg'||type==='image/webp')){for(let i=0;i<8&&blob&&blob.size>target&&q>.12;i++){q=Math.max(.12,q-.1);blob=await encode(out,type,q);}if(blob&&blob.size>target){$('resultSummary').textContent='Could not reach target size at the lowest quality tried. Download is still available at '+fmtBytes(blob.size)+'.';}}if(!blob)throw new Error('This browser could not export the selected format. Try JPEG or PNG.');lastBlob=blob;const ext=type==='image/jpeg'?'jpg':type==='image/png'?'png':'webp';const outName=filename+'-resized.'+ext;lastURL=URL.createObjectURL(blob);downloadButton.onclick=()=>{const a=document.createElement('a');a.href=lastURL;a.download=outName;document.body.appendChild(a);a.click();a.remove();};downloadButton.disabled=false;const oldBytes=sourceWidth*sourceHeight;const targetMsg=targetKB.value?' Target size requested: '+targetKB.value+' '+targetUnit.value+'.':'';$('resultSummary').textContent=outName+' · '+w+' × '+h+' px · '+fmtBytes(blob.size)+'.'+targetMsg;setStatus('Ready to download');}catch(e){setStatus('Processing failed');$('resultSummary').textContent=e&&e.message?e.message:'Something went wrong while processing the image.';}finally{processing=false;processButton.disabled=!source;}});
+window.addEventListener('beforeunload',()=>{if(lastURL)URL.revokeObjectURL(lastURL);});
+})();
