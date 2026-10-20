@@ -130,3 +130,23 @@
   .batch-results>.upload-compact .batch-upload-zone{min-height:165px;padding:12px}
   .batch-results>.upload-compact #browseImages{padding:10px 11px;font-size:11px}
 }
+
+
+/* Fine tune: narrower drop frame, taller canvas; keep chooser outside on the right */
+.batch-results>.upload-compact{
+  grid-template-columns:minmax(0, 560px) auto;
+  justify-content:center;
+  column-gap:18px;
+}
+.batch-results>.upload-compact .batch-upload-zone{
+  min-height:250px;
+}
+@media(max-width:600px){
+  .batch-results>.upload-compact{
+    grid-template-columns:minmax(0, 1fr) auto;
+    column-gap:10px;
+  }
+  .batch-results>.upload-compact .batch-upload-zone{
+    min-height:220px;
+  }
+}
