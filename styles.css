@@ -17,3 +17,27 @@
 
 /* Use the same Palia Resizer Studio icon wherever the old P mark appears. */
 .brand-mark{background:#087b40 url('favicon.svg?v=20261020') center/cover no-repeat!important;color:transparent!important;font-size:0!important;box-shadow:none!important;border:0!important;overflow:hidden}
+
+
+/* Full PaliaAPK HUB branded footer */
+.site-footer{margin-top:56px;padding:0 max(5vw,24px);background:#102f24;color:#eaf8f0;border-top:4px solid #35b783}
+.site-footer a{color:inherit}
+.footer-main{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(220px,1.2fr) minmax(220px,1fr) minmax(180px,.8fr);gap:36px;align-items:center;padding:42px 0 32px}
+.site-footer .footer-brand{width:max-content;gap:12px}
+.site-footer .footer-brand .brand-mark{height:48px;width:48px;border-radius:15px;box-shadow:0 7px 18px #0002!important}
+.site-footer .footer-brand strong{font-size:16px;color:#fff;letter-spacing:-.3px}
+.site-footer .footer-brand small{font-size:9px;color:#8ce0b7;letter-spacing:2px}
+.footer-about{max-width:360px;margin:0;color:#b9d4c7;font-size:12px;line-height:1.9}
+.footer-brand-note{display:flex;align-items:center;gap:12px;padding:13px 15px;border:1px solid #315b48;background:#173d2e;border-radius:14px;color:#b9d4c7;font-size:11px;line-height:1.8}
+.footer-brand-note strong{color:#fff;font-size:12px}
+.footer-spark{display:grid;place-items:center;flex:0 0 34px;width:34px;height:34px;border-radius:11px;background:#c9f6df;color:#13784f;font-size:19px}
+.footer-links{max-width:1200px;margin:0 auto;padding:25px 0 28px;border-top:1px solid #315342;display:grid;grid-template-columns:1fr 1fr;gap:25px}
+.footer-link-group{display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px}
+.footer-link-group>strong{width:100%;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:#83d9ad}
+.footer-link-group a{font-size:11px;color:#c4dbcf;transition:color .18s}
+.footer-link-group a:hover{color:#8be6b7}
+.footer-bottom{max-width:1200px;margin:0 auto;padding:17px 0 21px;border-top:1px solid #315342;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#a8c6b7;font-size:10px}
+.footer-bottom strong{color:#f1fff6}
+.footer-credit span{color:#6ee0a6;margin:0 3px}
+@media(max-width:800px){.site-footer{margin-top:38px}.footer-main{grid-template-columns:1fr;gap:17px;padding:32px 0 24px}.footer-about{max-width:520px}.footer-brand-note{max-width:340px}.footer-links{gap:22px}.footer-link-group{gap:10px 14px}}
+@media(max-width:480px){.site-footer{padding-inline:20px}.footer-links{grid-template-columns:1fr;gap:23px}.footer-bottom{flex-direction:column;gap:7px}.site-footer .footer-brand .brand-mark{width:43px;height:43px}}
