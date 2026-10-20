@@ -65,3 +65,19 @@
 .dropzone.dragover .empty-state{border-color:#66c995;background:rgba(255,255,255,.94);transform:scale(1.01)}
 @media(max-width:900px){.dropzone{min-height:360px}}
 @media(max-width:520px){.dropzone{min-height:280px;padding:14px}.empty-state{padding:25px 14px}.upload-art{width:90px;height:78px;margin-bottom:14px}.empty-state h2{font-size:22px}}
+
+
+/* Final upload-frame cleanup: hidden preview must never render before an image is loaded */
+[hidden]{display:none!important}
+.dropzone{position:relative;min-height:490px;display:grid;place-items:center;overflow:hidden;padding:26px;background:linear-gradient(135deg,#f5fff9 0%,#e8fbf0 42%,#d8f5e5 100%);background-image:radial-gradient(rgba(52,151,99,.17) 1px,transparent 1px),linear-gradient(150deg,rgba(255,255,255,.8) 0%,rgba(221,248,233,.65) 48%,rgba(157,231,190,.45) 100%);background-size:17px 17px,cover}
+.dropzone:before{content:"";position:absolute;inset:7% 8%;border:1px dashed rgba(45,147,91,.26);border-radius:26px;pointer-events:none;z-index:0;background:linear-gradient(130deg,rgba(255,255,255,.22),rgba(95,210,145,.08))}
+.dropzone:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse at 15% 20%,rgba(255,255,255,.72),transparent 30%),radial-gradient(ellipse at 90% 82%,rgba(90,205,139,.16),transparent 35%)}
+.empty-state{z-index:1;width:min(100%,430px);max-width:430px;min-height:270px;padding:32px 28px;border:1px solid rgba(255,255,255,.95);border-radius:26px;background:rgba(255,255,255,.84);box-shadow:0 22px 55px rgba(28,105,66,.12),inset 0 1px rgba(255,255,255,.95);backdrop-filter:blur(12px)}
+.upload-art{width:112px;height:96px;margin:0 auto 20px}
+.empty-state h2{font-size:clamp(24px,3vw,31px);letter-spacing:-1px;margin-bottom:10px}
+.empty-state p{max-width:300px;margin:0 auto 12px;font-size:13px}
+.empty-state small{padding:7px 11px;border-radius:999px;background:#f0faf4;color:#648674}
+.preview-wrap{position:relative;z-index:1;width:100%;min-height:0;display:grid;place-items:center;padding:8px;box-sizing:border-box;background:transparent}
+#previewCanvas{max-width:100%;max-height:600px;background:transparent;box-shadow:0 14px 38px rgba(20,75,45,.14);border:1px solid rgba(255,255,255,.9);border-radius:8px}
+@media(max-width:900px){.dropzone{min-height:360px;padding:18px}}
+@media(max-width:520px){.dropzone{min-height:280px;padding:14px}.empty-state{min-height:0;padding:26px 16px}.upload-art{width:90px;height:78px;margin-bottom:15px}}
